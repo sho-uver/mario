@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class mariomove : MonoBehaviour
 {
     Rigidbody2D rigid2D;
-    float jumpForce = 680.0f;
-    float walkForce = 30.0f;
-    float maxWalkSpeed = 4.0f;
+    float jumpForce = 1200.0f;
+    float walkForce = 90.0f;
+    float maxWalkSpeed = 12.0f;
     // Start is called before the first frame update
     void Start()
     {
