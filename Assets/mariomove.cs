@@ -32,4 +32,11 @@ public class mariomove : MonoBehaviour
         SceneManager.LoadScene("clear");
        
     }
+    private string enemyTag ="enemy";
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == enemyTag)
+            {Debug.Log("敵と接触した！");}
+    }
 }
