@@ -62,7 +62,7 @@ public class mariomove : MonoBehaviour {
         }
     }
 
-    //
+    //ジャンプしてるかどうか
     private float GetYSpeed () {
         float verticalkey = Input.GetAxis ("Vertical");
         float ySpeed = -gravity;
@@ -86,22 +86,20 @@ public class mariomove : MonoBehaviour {
         }
         if (isJump) {
             ySpeed *= jumpCurve.Evaluate (jumpTime);
+        } else if (isOtherJump) {
+            if (jumpPos + otherJumpHeight > transform.position.y && jumpTime < ) {
+                ySpeed = jumpSpeed;
+                jump += Time.delataTime;
+            } else {
+                isOtherJump = false;
+                jumpTime = 0.0f;
+            }
         }
         return ySpeed;
     }
 
     private bool isOtherJump = false;
     private float otherJumpHeight = 0.0f;
-
-    else if (isOtherJump) {
-        if (jumpPos + otherJumpHeight > transform.position.y && jumpTime < ) {
-            ySpeed = jumpSpeed;
-            jump += Time.delataTime;
-        } else {
-            isOtherJump = false;
-            jumpTime = 0.0f;
-        }
-    }
 
     if (isJump || isOtherJump) {
         ySpeed *= jumpCurve.Evaluate (jumpTime);
