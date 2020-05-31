@@ -8,10 +8,16 @@ public class mariomove : MonoBehaviour {
     float jumpForce = 1550.0f;
     float walkForce = 60.0f;
     float maxWalkSpeed = 9.0f;
+    private string enemyTag = "enemy";
+    private CapsuleCollider2D capcol = null;
+    bool isJump = false;
+    bool isOtherJump = false;
+    bool isDown = false;
 
     // Start is called before the first frame update
     void Start () {
         this.rigid2D = GetComponent<Rigidbody2D> ();
+        capcol = GetComponent<CapsuleCollider2D> ();
     }
 
     // Update is called once per frame
@@ -40,13 +46,6 @@ public class mariomove : MonoBehaviour {
         SceneManager.LoadScene ("clear");
     }
 
-    //敵と当たった時の処理
-    private string enemyTag = "enemy";
-    private CapsuleCollider2D capcol = null;
-    void Start () {
-        capcol = GetComponent<CapsuleCollider2D> ();
-    }
-
     //接触判定
     private void OnCollisionEnter2D (Collision2D collision) {
         if (collision.collider.tag == enemyTag) {
@@ -59,7 +58,7 @@ public class mariomove : MonoBehaviour {
             if (p.point.y < judgePos) {
                 private bool isOtherJump = false;
                 private float other JumpHeight = 0.0f;
-            } else｛｝
+            }
         }
     }
 
