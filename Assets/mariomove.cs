@@ -13,11 +13,13 @@ public class mariomove : MonoBehaviour {
     bool isJump = false;
     bool isOtherJump = false;
     bool isDown = false;
+    float jumpTime = 0.0f;
+    private float otherJumpHeight = 0.0f;
 
     // Start is called before the first frame update
     void Start () {
         this.rigid2D = GetComponent<Rigidbody2D> ();
-        capcol = GetComponent<CapsuleCollider2D> ();
+        this.capcol = GetComponent<CapsuleCollider2D> ();
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public class mariomove : MonoBehaviour {
         float judgePos = transform.position.y - (capcol.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p collision.contacts) {
             if (p.point.y < judgePos) {
-                private bool isOtherJump = false;
+                isOtherJump = false;
                 private float other JumpHeight = 0.0f;
             }
         }
@@ -97,9 +99,6 @@ public class mariomove : MonoBehaviour {
         }
         return ySpeed;
     }
-
-    private bool isOtherJump = false;
-    private float otherJumpHeight = 0.0f;
 
     if (isJump || isOtherJump) {
         ySpeed *= jumpCurve.Evaluate (jumpTime);
