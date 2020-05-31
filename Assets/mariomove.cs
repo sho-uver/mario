@@ -9,12 +9,13 @@ public class mariomove : MonoBehaviour {
     float walkForce = 60.0f;
     float maxWalkSpeed = 9.0f;
     private string enemyTag = "enemy";
-    private CapsuleCollider2D capcol = null;
+    CapsuleCollider2D capcol;
     bool isJump = false;
     bool isOtherJump = false;
     bool isDown = false;
     float jumpTime = 0.0f;
     private float otherJumpHeight = 0.0f;
+    public float stepOnRate;
 
     // Start is called before the first frame update
     void Start () {
@@ -54,74 +55,74 @@ public class mariomove : MonoBehaviour {
             Debug.Log ("敵と接触した！");
             isDown = true;
         }
-        float stepOnHeight = (capcol.size.y * (stepOnRate / 100f));
-        float judgePos = transform.position.y - (capcol.size.y / 2f) + stepOnHeight;
-        foreach (ContactPoint2D p collision.contacts) {
+        float stepOnHeight = (this.capcol.size.y * (stepOnRate / 100f));
+        float judgePos = transform.position.y - (this.capcol.size.y / 2f) + stepOnHeight;
+        foreach (ContactPoint2D p in collision.contacts) {
             if (p.point.y < judgePos) {
                 isOtherJump = false;
-                private float other JumpHeight = 0.0f;
             }
         }
     }
+    /*
+            //ジャンプしてるかどうか
+            private float GetYSpeed () {
+                float verticalkey = Input.GetAxis ("Vertical");
+                float ySpeed = -gravity;
+                if (isGround) {
+                    if (verticalKey > 0 && jumpTime < jumpLimitTime) {
+                        ySpeed = jumpSpeed;
+                        jumpPos = trnsform.position.y;
+                        isJump = true;
+                        jumpTime = 0.0f;
+                    } else {
+                        isJump = false;
+                    }
+                } else if (isJump) {
+                    if (verticalKey > 0 && jumpPos + jumpHeight > transform.position.y && jumpTime < jumpLimitTime && !isHead) {
+                        ySpeed = jumpSpeed;
+                        jumpTime += Time.deltaTime;
+                    } else {
+                        isJump = false;
+                        jumpTime = 0.0f;
+                    }
+                }
+                if (isJump) {
+                    ySpeed *= jumpCurve.Evaluate (jumpTime);
+                } else if (isOtherJump) {
+                    if (jumpPos + otherJumpHeight > transform.position.y && jumpTime < ) {
+                        ySpeed = jumpSpeed;
+                        jump += Time.delataTime;
+                    } else {
+                        isOtherJump = false;
+                        jumpTime = 0.0f;
+                    }
+                }
+                return ySpeed;
+            }
 
-    //ジャンプしてるかどうか
-    private float GetYSpeed () {
-        float verticalkey = Input.GetAxis ("Vertical");
-        float ySpeed = -gravity;
-        if (isGround) {
-            if (verticalKey > 0 && jumpTime < jumpLimitTime) {
-                ySpeed = jumpSpeed;
-                jumpPos = trnsform.position.y;
-                isJump = true;
-                jumpTime = 0.0f;
-            } else {
-                isJump = false;
+            if (isJump || isOtherJump) {
+                ySpeed *= jumpCurve.Evaluate (jumpTime);
             }
-        } else if (isJump) {
-            if (verticalKey > 0 && jumpPos + jumpHeight > transform.position.y && jumpTime < jumpLimitTime && !isHead) {
-                ySpeed = jumpSpeed;
-                jumpTime += Time.deltaTime;
-            } else {
-                isJump = false;
-                jumpTime = 0.0f;
-            }
-        }
-        if (isJump) {
-            ySpeed *= jumpCurve.Evaluate (jumpTime);
-        } else if (isOtherJump) {
-            if (jumpPos + otherJumpHeight > transform.position.y && jumpTime < ) {
-                ySpeed = jumpSpeed;
-                jump += Time.delataTime;
-            } else {
-                isOtherJump = false;
-                jumpTime = 0.0f;
-            }
-        }
-        return ySpeed;
-    }
 
-    if (isJump || isOtherJump) {
-        ySpeed *= jumpCurve.Evaluate (jumpTime);
-    }
-
-    private void OnCollisionEnetr2D (Collison2D collision) {
-        if (collision.collider.tag == enemyTag) {
-            float stepOnHeight = (capcol.size.y * (stemOnRate / 100f));
-            float judgePos = transform.position.y - (capcol.size.y / 2f) + stepOnHeight;
-            foreach (ContactPoint2D p in collision.contacts) {
-                if (p.point.y < judgePos) { } else { }
+            private void OnCollisionEnetr2D (Collison2D collision) {
+                if (collision.collider.tag == enemyTag) {
+                    float stepOnHeight = (this.capcol.size.y * (stemOnRate / 100f));
+                    float judgePos = transform.position.y - (this.capcol.size.y / 2f) + stepOnHeight;
+                    foreach (ContactPoint2D p in collision.contacts) {
+                        if (p.point.y < judgePos) { } else { }
+                    }
+                }
+                ObjectCollision o = collision.gameObject.GetComponent < ObjectCollision ();
+                if (o != null) {
+                    otherJumpHeight = o.boundHeight;
+                    o.playerStepOn = true;
+                    isOtherJump = true;
+                    isJump = false;
+                    jumpTime = 0.0f;
+                } else {
+                    Debug.Log ("ObjrctCollisionがついてないよ！")
+                }
             }
-        }
-        ObjectCollision o = collision.gameObject.GetComponent < ObjectCollision ();
-        if (o != null) {
-            otherJumpHeight = o.boundHeight;
-            o.playerStepOn = true;
-            isOtherJump = true;
-            isJump = false;
-            jumpTime = 0.0f;
-        } else {
-            Debug.Log ("ObjrctCollisionがついてないよ！")
-        }
-    }
+        */
 
 }
