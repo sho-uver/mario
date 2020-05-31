@@ -69,7 +69,7 @@ public class mariomove : MonoBehaviour {
 
     //ジャンプしてるかどうか
     private float GetYSpeed () {
-        float verticalkey = Input.GetAxis ("Vertical");
+        float verticalKey = Input.GetAxis ("Vertical");
         float ySpeed = -gravity;
         if (isGround) {
             if (verticalKey > 0 && jumpTime < jumpLimitTime) {
